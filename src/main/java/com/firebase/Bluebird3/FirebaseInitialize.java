@@ -20,6 +20,7 @@ public class FirebaseInitialize {
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setDatabaseUrl("https://bluebird2-96ac8-default-rtdb.europe-west1.firebasedatabase.app/")
                 .build();
 
         FirebaseApp.initializeApp(options);
