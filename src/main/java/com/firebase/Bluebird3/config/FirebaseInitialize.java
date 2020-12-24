@@ -1,4 +1,4 @@
-package com.firebase.Bluebird3;
+package com.firebase.Bluebird3.config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
