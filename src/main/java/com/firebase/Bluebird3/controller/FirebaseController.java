@@ -42,8 +42,7 @@ public class FirebaseController {
             String result = "";
             try {
                  result = firebaseService.saveUserData(bbuser);
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 result = e.getMessage();
             }
             return result;
@@ -56,8 +55,7 @@ public class FirebaseController {
         BBUser result = null;
         try {
             result = firebaseService.getUserData(org_id);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             result = null;
         }
         return  result;

@@ -16,9 +16,12 @@ public class FirebaseService {
 
     public String saveUserData(BBUser bbuser) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture =  dbFirestore.collection("zorin_test")
-                .document(bbuser.getOrg_id()).set(bbuser);
-        return bbuser.getOrg_id();
+        if (checkUserRef(bbuser)) {
+            ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("zorin_test")
+                    .document(bbuser.getOrg_id()).set(bbuser);
+            return bbuser.getOrg_id();
+        }
+        else return "Error in references";
     }
 
     public BBUser getUserData(String org_id) throws ExecutionException, InterruptedException {
@@ -35,5 +38,22 @@ public class FirebaseService {
         }
 
         return bbUser;
+    }
+
+    public boolean checkUserRef(BBUser bbUser) throws ExecutionException, InterruptedException {
+        boolean result = true;
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        if (bbUser.getReferences() != null) {
+            for (String reference : bbUser.getReferences()) {
+                DocumentReference documentReference = dbFirestore.collection("zorin_test").document(reference);
+                ApiFuture<DocumentSnapshot> future = documentReference.get();
+
+                DocumentSnapshot documentSnapshot = future.get();
+
+                if (!documentSnapshot.exists()) result = false;
+            }
+        }
+        else result = false;
+        return result;
     }
 }

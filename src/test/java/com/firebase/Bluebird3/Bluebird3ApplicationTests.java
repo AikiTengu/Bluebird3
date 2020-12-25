@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 @SpringBootTest
@@ -59,13 +60,27 @@ class Bluebird3ApplicationTests {
 		Assertions.assertEquals(savedUserOrgId, "Error. Fill in all the required fields");
 	}
 
+	@Test
+	public void testCreateUserErrorRefs(){
+		BBUser bbUser = CreateUser();
+		bbUser.setReferences(null);
+		String savedUserOrgId = firebaseController.saveUser(bbUser);
+		Assertions.assertEquals(savedUserOrgId, "Error in references");
+	}
+
 	private static BBUser CreateUser() {
 		BBUser bbUser = new BBUser();
+		ArrayList<String> references = new ArrayList<>();
+		references.add("id2");
+
 		bbUser.setOrg_id("test_id");
 		bbUser.setEmail("test@gmail.com");
 		bbUser.setNote("****");
 		bbUser.setAddress("Liberty av");
 		bbUser.setNumberfield(1);
+		bbUser.setReferences(references);
+
+
 		return bbUser;
 	}
 
