@@ -1,4 +1,4 @@
-package com.firebase.Bluebird3.pojo;
+package com.firebase.Bluebird3.model;
 
 import com.google.firebase.database.annotations.NotNull;
 
