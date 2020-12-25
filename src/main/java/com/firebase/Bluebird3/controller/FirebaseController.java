@@ -16,7 +16,7 @@ public class FirebaseController {
     @Autowired
     FirebaseService firebaseService;
 
-    public String SendEmailNotification(BBUser bbuser){
+    public String sendEmailNotification(BBUser bbuser){
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
         mailSender.setHost("smtp.mailtrap.io");
@@ -31,13 +31,14 @@ public class FirebaseController {
         simpleMailMessage.setText("Your data has been successfully updated");
 
         mailSender.send(simpleMailMessage);
-        return bbuser.getEmail();
+        String result = simpleMailMessage.getText();
+        return result;
     }
 
     @PostMapping("/saveUser")
     public String saveUser(@RequestBody BBUser bbuser) {
         if ((bbuser.getOrg_id()!=null)&&(bbuser.getEmail()!=null)) {
-            SendEmailNotification(bbuser);
+            sendEmailNotification(bbuser);
 
             String result = "";
             try {

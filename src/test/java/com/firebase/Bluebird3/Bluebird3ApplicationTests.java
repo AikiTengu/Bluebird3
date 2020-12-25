@@ -68,6 +68,14 @@ class Bluebird3ApplicationTests {
 		Assertions.assertEquals(savedUserOrgId, "Error in references");
 	}
 
+	@Test
+	public void testSendMailNotification(){
+		BBUser bbUser = CreateUser();
+		String sendMail = "";
+		sendMail = firebaseController.sendEmailNotification(bbUser);
+		Assertions.assertEquals(sendMail, "Your data has been successfully updated");
+	}
+
 	private static BBUser CreateUser() {
 		BBUser bbUser = new BBUser();
 		ArrayList<String> references = new ArrayList<>();
