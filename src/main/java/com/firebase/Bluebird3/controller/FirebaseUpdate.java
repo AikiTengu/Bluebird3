@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-public class FirebaseController {
+public class FirebaseUpdate {
 
     @Autowired
     FirebaseService firebaseService;
@@ -35,14 +35,14 @@ public class FirebaseController {
         return result;
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping("/save")
     public String saveUser(@RequestBody BBUser bbuser) {
         if ((bbuser.getOrg_id()!=null)&&(bbuser.getEmail()!=null)) {
             sendEmailNotification(bbuser);
 
             String result = "";
             try {
-                 result = firebaseService.saveUserData(bbuser);
+                result = firebaseService.saveUserData(bbuser);
             } catch (Exception e) {
                 result = e.getMessage();
             }
@@ -51,14 +51,5 @@ public class FirebaseController {
         else return "Error. Fill in all the required fields";
     }
 
-    @GetMapping("/users")
-    public BBUser getUser(@RequestHeader() String org_id) {
-        BBUser result = null;
-        try {
-            result = firebaseService.getUserData(org_id);
-        } catch (Exception e) {
-            result = null;
-        }
-        return  result;
-    }
+
 }
