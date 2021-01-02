@@ -3,12 +3,7 @@ package com.firebase.Bluebird3.controller;
 import com.firebase.Bluebird3.Service.FirebaseService;
 import com.firebase.Bluebird3.model.BBUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 public class FirebaseRead {

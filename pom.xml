@@ -15,7 +15,7 @@
 	<description>Testproject for BB</description>
 
 	<properties>
-		<java.version>15</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -80,8 +80,7 @@
 				<artifactId>function-maven-plugin</artifactId>
 				<version>0.9.6</version>
 				<configuration>
-					<functionTarget>functions.FirebaseRead</functionTarget>
-					<functionTarget>functions.FirebaseUpdate</functionTarget>
+					<functionTarget>FirebaseUpdate</functionTarget>
 				</configuration>
 			</plugin>
 		</plugins>
